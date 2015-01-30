@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src='jquery-1.11.1.min.js'></script>
+<script>
+$(document).ready(function(){
+	$("#postJson").click(function(){
+		alert("Postjson");
+		var data={"name":"John", "address":"kolkata","age":"23"};
+		$.ajax({
+			  type: "POST",
+			  url: "service/getHello/postJson",
+			  data: data,
+			  success: function(){alert("Success")},
+			  dataType: "json"
+			});
+	});
+});
+
+</script>
+</head>
+<body>
+<form action="service/getHello/postFile" method="POST" enctype="multipart/form-data">
+<input type='file' name='file' ></input>
+<input type='submit'/>
+</form>
+<br>
+<form action="service/getHello/download">
+<button type="submit">Download!</button>
+</form>
+<br>
+<button id="postJson">Post Json</button>
+
+</body>
+</html>
