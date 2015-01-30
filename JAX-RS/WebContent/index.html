@@ -10,11 +10,24 @@ $(document).ready(function(){
 		alert("Postjson");
 		var data={"name":"John", "address":"kolkata","age":"23"};
 		$.ajax({
-			  type: "POST",
-			  url: "service/getHello/postJson",
-			  data: data,
-			  success: function(){alert("Success")},
-			  dataType: "json"
+			type: "POST",
+			contentType: 'application/json',
+			url: "service/getHello/postJson",
+			dataType: "json",
+			data: JSON.stringify(data),
+			success: function(data, textStatus, jqXHR){alert("Success")},
+
+			});
+	});
+	
+	$("#getJson").click(function(){
+		$.ajax({
+			type: "GET",
+			contentType: 'application/json',
+			url: "service/getHello/getJson",
+			success: function(data, textStatus, jqXHR){
+				$("#jsonDisplay").html("Name - "+data.name);	
+			},
 			});
 	});
 });
@@ -31,6 +44,9 @@ $(document).ready(function(){
 <button type="submit">Download!</button>
 </form>
 <br>
+<div id="jsonDisplay"></div>
+<button id="getJson">Get Json</button>
+
 <button id="postJson">Post Json</button>
 
 </body>
